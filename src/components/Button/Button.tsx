@@ -3,6 +3,10 @@ import './button.css';
 
 interface ButtonProps {
   /**
+   * What varian will the button be
+   */
+  variant?: string;
+  /**
    * Is this the principal call to action on the page?
    */
   primary?: boolean;
@@ -13,7 +17,7 @@ interface ButtonProps {
   /**
    * How large should the button be?
    */
-  size?: 'small' | 'medium' | 'large';
+  size?: 'h-8 px-4 text-sm' | 'h-10 px-5' | 'h-12 px-6 text-lg';
   /**
    * Button contents
    */
@@ -29,16 +33,16 @@ interface ButtonProps {
  */
 export const Button = ({
   primary = false,
-  size = 'medium',
+  size = 'h-10 px-5',
   backgroundColor,
   label,
   ...props
 }: ButtonProps) => {
-  const mode = primary ? 'bg-blue-500' : 'bg-dark';
+  const mode = primary ? 'bg-blue-500 text-blue-100 hover:bg-blue-700' : 'bg-gray-700 text-gray-100 hover:bg-gray-800';
   return (
     <button
       type="button"
-      className={['btn', `storybook-button--${size}`, mode].join(' ')}
+      className={['transition-colors duration-150 rounded-lg focus:shadow-outline', `${size}`, mode].join(' ')}
       {...props}
     >
       {label}
